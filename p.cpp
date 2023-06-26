@@ -148,7 +148,29 @@ public:
             getline(products,line);
         }products.close();
     }
+};
 
-
-
+class manager :employee ,currency {
+private:
+    string name="_MANAGER_";
+    string email="MAnageSTore@gmail.com";
+    string password="FTYHb345vgjkd254";
+public:
+    void add(){
+        cout<<"Name :";
+        cin>> this->name;
+        cout<<"Employee Id :";
+        cin>> this->employee_iD;
+        cout<<"Email :";
+        cin>> this->email;
+        cout<<"Password :";
+        cin>> this->password;
+        ofstream employee(this->employee_iD+".txt",ios_base::app);
+        ofstream employees("empinfo.txt",ios_base::app);
+        employee<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< this->password<<endl;
+        employees<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< this->password<<endl;
+        employee.close();
+        employees.close();
+    }
+    
 };
