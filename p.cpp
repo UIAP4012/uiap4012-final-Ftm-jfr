@@ -1,7 +1,27 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 using namespace std;
+
+
+
+class currency{
+public:
+    double dollor;
+    double euro;
+
+    currency(){
+        ifstream file("currency.txt");
+        string line;
+        getline(file,line);
+        dollor=stod(line);
+        getline(file,line);
+        euro= stod(line);
+    }
+
+};
+
 
 class product{
 public:
