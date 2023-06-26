@@ -316,3 +316,39 @@ void login_manager()
         }
     }
 }
+
+
+void login()
+{
+    string name,employee_iD,email,password;
+    cout<<"Name :";
+    cin>>name;
+    cout<<"Employee Id :";
+    cin>>employee_iD;
+    cout<<"Email :";
+    cin>>email;
+    cout<<"Password :";
+    cin>>password;
+    ifstream file(employee_iD+".txt");
+    if(!file.is_open())
+        cout<<"No such employee was found\n";
+    else
+    {
+        string line;
+        getline(file,line);//name
+        if(line==name)
+        {
+            getline(file,line);//id
+            if(line==employee_iD)
+            {
+                getline(file,line);//email
+                if(line==email)
+                {
+                    getline(file,line);//password
+                    if(line==password)
+                        options(false);
+                }
+            }
+        }
+    }
+}
