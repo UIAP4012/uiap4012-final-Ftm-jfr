@@ -213,11 +213,17 @@ public:
                 }
             }
         }
-
-        factor<<"Total price :,"<<sum<<",";
+        currency a;
+        factor<<"Total price :,"<<sum<<","<<a.exchangetodollor(sum)<<" $,"<<a.exchangetoeuro(sum)<<" €,\n";
+        time_t t;
+        struct tm* tim;
+        time(&t);
+        tim = localtime(&t);
+        factor << asctime(tim)<<",\n";
         factor.close();
     }
 };
+
 
 class manager :employee ,currency {
 private:
