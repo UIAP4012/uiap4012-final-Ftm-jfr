@@ -20,6 +20,14 @@ public:
         euro= stod(line);
     }
 
+    void Edit(){
+        cout<<"$ :";
+        cin>>dollor;
+        cout<<"€ :";
+        cin>>euro;
+        ofstream currency("currency.txt");
+        currency<<dollor<<endl<<euro;
+    }
 };
 
 
