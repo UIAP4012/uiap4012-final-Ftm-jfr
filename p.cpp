@@ -150,6 +150,75 @@ public:
     }
 };
 
+class employee :public product{
+    friend class manager;
+private:
+    string name,employee_iD,email,password;
+public:
+    void add_factor()
+    {
+        ifstream factornum("factornumber.txt");
+        string line_num;
+        getline(factornum,line_num);
+        factornum.close();
+        line_num= to_string(stoi(line_num)+1);
+        ofstream factnum("factornumber.txt");
+        factnum<<line_num;
+        factnum.close();
+        long int sum=0;
+        ofstream factor("factor"+ line_num+".csv");
+        factor<<"Name,Number,Id,Price\n";
+        cout<<"Enter zero ID to finish\n";
+        while(true)
+        {
+            cout<<"ID :";
+            string line_name,line_id;
+            cin>>Product_ID;
+            ifstream file("products.txt");
+            if(Product_ID=="0")
+            {
+                file.close();
+                break;
+            }
+            while(getline(file,line_name))
+            {
+                getline(file,line_id);
+                if(line_id==Product_ID)
+                {
+                    ifstream product(line_name+".txt");
+                    string line;
+                    getline(product,line);//name
+                    factor<<line<<",";
+                    cout<<"number :";
+                    getline(product,line);//num
+
+
+                    product.close();
+                    string lp;
+                    cin>>lp;//quantity
+                    factor<<lp<<",";
+                    updatequantity(stoi(lp),line_name);
+                    ifstream product2(line_name+".txt");
+                    getline(product2,line);
+                    getline(product2,line);
+
+
+                    getline(product2,line);//id
+                    factor<<line<<",";
+                    getline(product2,line);//price
+                    sum+=stoi(line)* stoi(lp);
+                    factor<<line<<",\n";
+                    product2.close();
+                    break;
+                }
+            }
+        }
+
+        factor<<"Total price :,"<<sum<<",";
+        factor.close();
+    }
+};
+
 class manager :employee ,currency {
 private:
     string name="_MANAGER_";
