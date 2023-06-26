@@ -131,6 +131,24 @@ public:
         rename("temp.txt","products.txt");
     }
 
+    void show_product(){
+        ifstream products("products.txt");
+        string line;
+        cout<<"Name--------Qantity\n";
+        while (getline(products,line))
+        {
+            if(!line.empty())
+                cout<<line<<"----------";
+            ifstream quantity(line+".txt");
+            getline(quantity,line);
+            getline(quantity,line);
+            if(!line.empty())
+                cout<<line<<endl;
+            quantity.close();
+            getline(products,line);
+        }products.close();
+    }
+
 
 
 };
