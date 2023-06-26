@@ -27,6 +27,27 @@ public:
         products<< this->name<<endl<< this->Product_ID<<endl;
         products.close();
     }
+    void updatequantity(int newnum,const string& namee)
+    {
+        ifstream product((namee + ".txt"));
+        ofstream temp("temp.txt",ios_base::app);
 
+        string line;
+        getline(product,line);
+        temp<<line<<endl;
+        getline(product,line);
+        temp<<stoi(line)-newnum<<endl;
+        getline(product,line);
+        temp<<line<<endl;
+        getline(product,line);
+        temp<<line<<endl;
+        getline(product,line);
+        temp<<line;
+        product.close();
+        temp.close();
+
+        remove((namee + ".txt").c_str());
+        rename("temp.txt",(namee + ".txt").c_str());
+    }
 
 };
