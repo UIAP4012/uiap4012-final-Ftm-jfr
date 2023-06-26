@@ -28,6 +28,18 @@ public:
         ofstream currency("currency.txt");
         currency<<dollor<<endl<<euro;
     }
+
+    double exchangetodollor(double toman){
+        double priceindollor;
+        priceindollor=toman/dollor;
+        return priceindollor;
+    }
+
+    double exchangetoeuro(double toman){
+        double priceineuro;
+        priceineuro=toman/euro;
+        return priceineuro;
+    }
 };
 
 
