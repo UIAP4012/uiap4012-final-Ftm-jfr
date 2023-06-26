@@ -300,6 +300,47 @@ public:
     }
 };
 
+void options(bool flag)
+{
+    if(!flag)
+        cout<<"1.Add new product\n2.Edite products\n3.Delete product\n4.Show all products\n5.Add factor\n6.Log out\n";
+    if(flag)
+        cout<<"1.Add new product\n2.Edite products\n3.Delete product\n4.Show all products\n5.Add factor\n6.Add new employee\n7.Employees info\n8.Edit exchange rate\n9.Log out\n";
+    int order=0;
+    employee a;
+    cin>>order;
+    if(order==1)
+        a.add_product();
+    else if(order==5)
+        a.add_factor();
+    else if(order==2)
+        a.editproduct();
+    else if(order==3)
+        a.deleteproduct();
+    else if(order==4)
+        a.show_product();
+    if(flag)
+    {
+        manager x;
+        currency y;
+        if(order==6)
+            x.add();
+        else if(order==7)
+            x.print_employee_info();
+        else if(order==8)
+            y.Edit();
+        else if(order==9)
+            main();
+        if(order!=9)
+            options(flag);
+    }
+    else if(order==6)
+        main();
+    if(order!=6)
+        options(flag);
+}
+
+
 void login_manager()
 {
     string name,email,password;
@@ -354,6 +395,8 @@ void login()
         }
     }
 }
+
+
 
 int main()
 {
