@@ -4,7 +4,9 @@
 #include <ctime>
 using namespace std;
 
-
+void login_manager();
+void login();
+int main();
 
 class currency{
 public:
@@ -351,4 +353,21 @@ void login()
             }
         }
     }
+}
+
+int main()
+{
+    cout<<"Who are you ?\n1.Employee\t\t2.Manager\t\t3.Exit\n";
+    int order;
+    while (true)
+    {
+        cin>>order;
+        if(order==1)
+            login();
+        else if(order==2)
+            login_manager();
+        if(order==3)
+            break;
+    }
+    return 0;
 }
