@@ -297,3 +297,22 @@ public:
         employees.close();
     }
 };
+
+void login_manager()
+{
+    string name,email,password;
+    cout<<"Name :";
+    cin>>name;
+    cout<<"Email :";
+    cin>>email;
+    cout<<"Password :";
+    cin>>password;
+    if(name=="_MANAGER_")
+    {
+        if(email=="MAnageSTore@gmail.com")
+        {
+            if(password=="FTYHb345vgjkd254")
+                options(true);
+        }
+    }
+}
