@@ -76,7 +76,60 @@ public:
         rename("temp.txt","products.txt");
     }
 
+    void editproduct()
+    {
+        cout<<"Name :";
+        cin>>name;
+        string N=name;
+        remove((name + ".txt").c_str());
+        ofstream temp(("temp.txt"));
+        cout<<"New Name :";
+        cin>>name;
+        temp<<name<<endl;
+        cout<<"New Number :";
+        cin>>number;
+        temp<<number<<endl;
+        cout<<"New Product ID :";
+        cin>>Product_ID;
+        temp<<Product_ID<<endl;
+        cout<<"New Price :";
+        cin>>price;
+        temp<<price<<endl;
+        cout<<"New Exp date :";
+        cin>>Expiration_date;
+        temp<<Expiration_date<<endl;
+        temp.close();
+        rename("temp.txt",(name + ".txt").c_str());
 
+        ofstream temp2("temp.txt");
+        ifstream p("products.txt");
+        string line;
+        while(getline(p,line))
+        {
+            if(line!=N)
+            {
+                temp2<<line<<endl;
+                getline(p,line);
+                temp2<<line<<endl;
+            }
+            else
+            {
+                ifstream edif(name+".txt");
+                getline(edif,line);
+                temp2<<line<<endl;
+                getline(edif,line);
+                getline(edif,line);
+                temp2<<line<<endl;
+                edif.close();
+                getline(p,line);
+            }
+
+        }p.close();
+        temp2.close();
+
+        remove("products.txt");
+        rename("temp.txt","products.txt");
+    }
 
 
 
