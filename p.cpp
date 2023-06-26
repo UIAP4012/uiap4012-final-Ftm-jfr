@@ -172,5 +172,13 @@ public:
         employee.close();
         employees.close();
     }
-    
+
+    void print_employee_info() {
+        ifstream employees("empinfo.txt");
+        string line;
+        while (getline(employees, line)) {
+            cout << line << endl;
+        }
+        employees.close();
+    }
 };
