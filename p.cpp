@@ -330,16 +330,15 @@ void options(bool flag)
         else if(order==8)
             y.Edit();
         else if(order==9)
-            main();
+            return;
         if(order!=9)
             options(flag);
     }
     else if(order==6)
-        main();
+        return;
     if(order!=6)
         options(flag);
 }
-
 
 void login_manager()
 {
@@ -409,21 +408,19 @@ void login()
     }
 }
 
-
-
 int main()
 {
-    cout<<"Who are you ?\n1.Employee\t\t2.Manager\t\t3.Exit\n";
-    int order;
-    while (true)
+    cout<<"Who are you ?\n1.Employee\t\t2.Manager\nPress 3 if you want to exit\n";
+    string order="0";
+    cin>>order;
+    while (order!="3")
     {
-        cin>>order;
-        if(order==1)
+        if(order=="1")
             login();
-        else if(order==2)
+        else if(order=="2")
             login_manager();
-        if(order==3)
-            break;
+        cout<<"Who are you ?\n1.Employee\t\t2.Manager\nPress 3 if you want to exit\n";
+        cin>>order;
     }
     return 0;
 }
