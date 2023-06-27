@@ -44,7 +44,6 @@ public:
     }
 };
 
-
 class product{
 public:
     string Product_ID,Expiration_date;
@@ -92,7 +91,6 @@ public:
         remove((namee + ".txt").c_str());
         rename("temp.txt",(namee + ".txt").c_str());
     }
-
     void deleteproduct()
     {
         cout<<"Enter the product name :";
@@ -117,7 +115,6 @@ public:
         remove("products.txt");
         rename("temp.txt","products.txt");
     }
-
     void editproduct()
     {
         cout<<"Name :";
@@ -172,7 +169,6 @@ public:
         remove("products.txt");
         rename("temp.txt","products.txt");
     }
-
     void show_product(){
         ifstream products("products.txt");
         string line;
@@ -266,7 +262,6 @@ public:
     }
 };
 
-
 class manager :employee ,currency {
 private:
     string name="_MANAGER_";
@@ -282,10 +277,14 @@ public:
         cin>> this->email;
         cout<<"Password :";
         cin>> this->password;
+
+        hash<string> hash_pass;
+        size_t hash_value = hash_pass(password);
+
         ofstream employee(this->employee_iD+".txt",ios_base::app);
         ofstream employees("empinfo.txt",ios_base::app);
-        employee<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< this->password<<endl;
-        employees<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< this->password<<endl;
+        employee<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< hash_value<<endl;
+        employees<< this->name<<endl<< this->employee_iD<<endl<< this->email<<endl<< hash_value<<endl;
         employee.close();
         employees.close();
     }
@@ -298,6 +297,7 @@ public:
         }
         employees.close();
     }
+
 };
 
 void login_manager()
@@ -319,6 +319,15 @@ void login_manager()
     }
 }
 
+bool check_password(const string& password,unsigned long long int line)
+{
+    hash<string> hash_pass;
+    unsigned long long  int hash_value = hash_pass(password);
+    if(hash_value==(line))
+        return true;
+    else
+        return false;
+}
 
 void login()
 {
@@ -347,8 +356,12 @@ void login()
                 if(line==email)
                 {
                     getline(file,line);//password
-                    if(line==password)
+                    unsigned long long int l= stoull(line);
+                    if(check_password(password, l))
+                    {
                         options(false);
+                    }
+
                 }
             }
         }
